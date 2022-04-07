@@ -5,3 +5,25 @@
 .right {
   text-align: right;
 }
+
+.center {
+  text-align: center;
+}
+
+.card-icon {
+  height: 20px;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+.bordered-icon {
+  background-color: orange;
+  border-radius: 50px;
+  
+}
