@@ -8,7 +8,7 @@ export default class NavbarComponent extends React.Component {
     render() {
         return (
             <div>
-            <Navbar bg="primary" variant="dark">
+            <Navbar bg="dark" variant="dark">
                     <Container>
                         <Navbar.Brand href="#home">Covid-19 Stats</Navbar.Brand>
                         <Nav className="me-auto">

@@ -1,0 +1,2 @@
+vaccini per regione: https://github.com/italia/covid19-opendata-vaccini/blob/master/dati/vaccini-summary-latest.json
+vaccini per regione per età: https://github.com/italia/covid19-opendata-vaccini/blob/master/dati/anagrafica-vaccini-summary-latest.json
