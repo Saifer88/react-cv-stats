@@ -1,8 +1,7 @@
 import * as React from "react";
-import CountUp from "react-countup";
-import { fetchData } from "./AsyncFunctions";
-import { faBedPulse, faCircle, faHeart, faHospital, faHouseMedical, faShieldVirus, faSkullCrossbones, faThermometer, faVirusCovid, faViruses } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBedPulse, faHeart, faHospital, faHouseMedical, faShieldVirus, faSkullCrossbones, faThermometer, faVirusCovid, faViruses } from "@fortawesome/free-solid-svg-icons";
+import Card from "../Card";
+import { fetchData } from "../AsyncFunctions";
 
 interface HomeProps {
 
@@ -24,7 +23,7 @@ interface HomeState {
 const nationalUrl = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale-latest.json";
 const vacciniUrl = "https://raw.githubusercontent.com/italia/covid19-opendata-vaccini/master/dati/anagrafica-vaccini-summary-latest.json";
 
-export default class Home extends React.Component<HomeProps, HomeState>{
+export default class National extends React.Component<HomeProps, HomeState>{
 
     constructor(props: HomeProps) {
         super(props);
@@ -73,15 +72,16 @@ export default class Home extends React.Component<HomeProps, HomeState>{
     render() {
         return (<div>
           <h1>Dati totali</h1>
-          <p>Situazione nazionale, in <span style={{color: 'green'}}>verde</span>/<span style={{color: 'red'}}>rosso</span> le variazioni rispetto a un giorno fa</p>
+          <p>Situazione nazionale, in <span style={{color: 'green'}}>verde</span>/<span style={{color: 'red'}}>rosso</span> le variazioni rispetto ad un giorno fa</p>
           <div className="row"> 
-          <Card lenght="6" icona={faVirusCovid} title="Casi" value={this.state.casi}/>
-          <Card lenght="6" icona={faSkullCrossbones} title="Deceduti" value={this.state.deceduti}/>
+          <Card lenght="4" icona={faVirusCovid} title="Casi" value={this.state.casi}/>
+          <Card lenght="4" icona={faSkullCrossbones} title="Deceduti" value={this.state.deceduti}/>
+          <Card lenght="4" icona={faHeart} title="Guariti" value={this.state.guariti}/>
           </div>
           <div className="row"> 
-            <Card lenght="6" icona={faHeart} title="Guariti" value={this.state.guariti}/>
-            <Card lenght="6" icona={faShieldVirus} title="Immuni" subtitle="(Over 12 - Dose BOOSTER + Guariti)" value={this.state.vaccinati}/>
+            <Card lenght="4" icona={faShieldVirus} title="Immuni*" subtitle="(Over 12 - Dose BOOSTER + Guariti)" value={this.state.vaccinati}/>
           </div>
+          <p>(*) Dato riferito a persone sopra i 12 anni con dose booster o guariti negli ultimi mesi</p>
         <h1>Dati odierni</h1>
         <div className="row">
             <Card lenght="4" icona={faViruses} title="Nuovi positivi" value={this.state.totalCasesToday}/>
@@ -94,57 +94,6 @@ export default class Home extends React.Component<HomeProps, HomeState>{
         </div>
     </div>
     )
+  }
 }
 
-}
-
-interface CardProps {
-    lenght?: String;
-    title?: String;
-    value?: String;
-    icona?: any;
-    diff?: String;
-    subtitle?: String;
-}
-
-function Card(props: CardProps) {
-    return (
-<div className={"mb-4 col-"+props.lenght}>
-      <div className="card text-white bg-dark mb-3">
-        <div className="header mt-3 center">
-          <h4>{props.title} {props.subtitle != null && 
-          (<span className="badge rounded-pill bg-info d-inline-block" tabIndex={0} data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content={props.subtitle}>
-            i
-          </span>)}
-          </h4>
-          </div>
-        <div className="card-body">
-          <div className="row">
-            <div className="col-3 d-flex align-items-center">
-            <h1><FontAwesomeIcon mask={faCircle} size="2x" transform="shrink-6.45" icon={props.icona} /></h1>
-            </div>
-          <div className="col-6 d-flex align-items-center justify-content-center">
-            <h2 className="value">
-              <div className="value">
-              <CountUp  duration={1.5} separator="." end={props.value}></CountUp>
-
-              </div>
-            </h2>
-          </div>
-          <div className="col-3 d-flex align-items-center">
-          <h5 className={+props.diff > 0 ? 'red' : 'green'}>
-            {+props.diff > 0  && '+'}{props.diff && (<CountUp  duration={1.5} separator="." end={props.diff}></CountUp>)}
-          </h5>
-          </div>
-
-          </div>
-        </div>
-      </div>
-      </div>
-
-
-    )
-
-
-
-}

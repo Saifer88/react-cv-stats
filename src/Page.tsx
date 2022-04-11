@@ -1,8 +1,12 @@
 import * as React from "react";
 import {Routes, Route, Link} from "react-router-dom";
-import Component from "./Component";
-import Home from "./Home";
 import './Page.css';
+import About from "./pages/About";
+import Regionale from "./pages/Regionale";
+import Support from "./pages/Support";
+import Vaccini from "./pages/Vaccini";
+import National from "./pages/National";
+import Home from "./pages/Home";
 
 
 export default class Page extends React.Component{
@@ -13,27 +17,12 @@ export default class Page extends React.Component{
       <Routes>
         <Route path="react-cv-stats" element={<Home />}/>
         <Route path="/" element={<Home />} />
+        <Route path="national" element={<National />} />
+        <Route path="regional" element={<Regionale />} />
+        <Route path="vaccini" element={<Vaccini />} />
         <Route path="about" element={<About />} />
-        <Route path="component" element={<Component />} />
+        <Route path="support" element={<Support />} />
       </Routes>
     </div>)
     }
 }
-
-
-function About() {
-    return (
-      <>
-        <main>
-          <h2>Who are we?</h2>
-          <p>
-            That feels like an existential question, don't you
-            think?
-          </p>
-        </main>
-        <nav>
-          <Link to="/">Home</Link>
-        </nav>
-      </>
-    );
-  }

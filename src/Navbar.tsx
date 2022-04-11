@@ -12,8 +12,12 @@ export default class NavbarComponent extends React.Component {
                     <Container>
                         <Navbar.Brand href="#home">Covid-19 Stats</Navbar.Brand>
                         <Nav className="me-auto">
-                            <NavbarLink refer="/" name="Home"/>
-                            <NavbarLink refer="/about" name="About"/>
+                            <NavbarLink refer="/">Home</NavbarLink>
+                            <NavbarLink refer="/national">Nazionale</NavbarLink>
+                            <NavbarLink refer="/regional">Regionale</NavbarLink>
+                            <NavbarLink refer="/vaccini">Vaccini</NavbarLink>
+                            <NavbarLink refer="/about">Chi siamo?</NavbarLink>
+                            <NavbarLink refer="/support">Sostienici</NavbarLink>
                         </Nav>
                     </Container>
                 </Navbar></div>);
@@ -22,9 +26,8 @@ export default class NavbarComponent extends React.Component {
 
 interface NavbarLinkProps extends NavLinkProps {
     refer: To;
-    name: String;
 }
 
 function NavbarLink(props: NavbarLinkProps){
-    return (<Nav.Link as={Link} to={props.refer}>{props.name}</Nav.Link>)
+    return (<Nav.Link as={Link} to={props.refer}>{props.children}</Nav.Link>)
 }
