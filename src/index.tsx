@@ -21,11 +21,9 @@ const initialOptions = {
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
 root.render(<React.StrictMode>
-  <PayPalScriptProvider options={initialOptions}>
   <BrowserRouter>
   <div className='app'>
   <App></App>
   </div>
   </BrowserRouter>
-  </PayPalScriptProvider>
   </React.StrictMode>);
