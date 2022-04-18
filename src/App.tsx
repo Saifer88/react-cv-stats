@@ -22,6 +22,8 @@ export default class App extends React.Component<{},AppComponentState> {
     }
 }
 
+
+
 async componentDidMount(){
     let regionData = (await fetchData(regionalDataUrl));
 
