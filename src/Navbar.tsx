@@ -27,15 +27,16 @@ export default class NavbarComponent extends React.Component<NavbarComponentProp
     render() {
         return (
             <div>
-            <Navbar bg="dark" variant="dark">
-                    <Container>
-                        <Navbar.Brand href="#home">Covid-19 Stats</Navbar.Brand>
+            <Navbar  bg="dark" fixed="top" variant="dark">
+                    <Container >
+                        <Navbar.Brand as={Link} to="/">Covid-19 Stats</Navbar.Brand>
                         <Nav className="me-auto">
                             <NavbarLink refer="/">Home</NavbarLink>
                             <NavbarLink refer="/national">Italia</NavbarLink>
-                            <NavDropdown title="Regioni" id="basic-nav-dropdown">
+                            <NavDropdown menuVariant="dark"  title="Regioni" id="basic-nav-dropdown">
                                 {this.props.regionalData && this.renderRegionsDropdown()}
-                            </NavDropdown>                            
+                            </NavDropdown>   
+                         
                             <NavbarLink refer="/vaccini">Vaccini</NavbarLink>
                         </Nav>
                         <Nav className="ms-auto">
@@ -56,9 +57,9 @@ interface NavbarDropdownRegionLinkProps {
 }
 
 function NavbarLink(props: NavbarLinkProps){
-    return (<Nav.Link  as={Link} to={props.refer}>{props.children}</Nav.Link>)
+    return (<Nav.Link as={Link} to={props.refer}>{props.children}</Nav.Link>)
 }
 
 function NavbarDropdownRegionLink(props: NavbarDropdownRegionLinkProps) {
-    return (<NavDropdown.Item as={Link} to={"/regional/"+props.index}>{props.regionData.denominazione_regione}</NavDropdown.Item>)
+    return (<NavDropdown.Item className="navb" as={Link} to={"/regional/"+props.index}>{props.regionData.denominazione_regione}</NavDropdown.Item>)
 }

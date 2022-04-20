@@ -1,5 +1,5 @@
 .page {
-  margin-top: 3%;
+  margin-top: 5%;
 }
 
 .right {
@@ -25,7 +25,10 @@
 .bordered-icon {
   background-color: orange;
   border-radius: 50px;
-  
+}
+
+.project-card {
+  border-radius: 50px;
 }
 
 .value {

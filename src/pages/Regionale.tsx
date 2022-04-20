@@ -20,7 +20,10 @@ class Regional extends React.Component<RegionalProps> {
 
     render() {
         return (<div>
-            <h1>Dati totali</h1>
+            <div className="d-flex justify-content-between">
+            <h1 >Dati totali</h1>
+            <h1>{this.props.regionalData.denominazione_regione}</h1>
+            </div>
             <p>Situazione nazionale, in <span style={{color: 'green'}}>verde</span>/<span style={{color: 'red'}}>rosso</span> le variazioni rispetto ad un giorno fa</p>
             <div className="row"> 
             <Card lenght="4" icona={faVirusCovid} title="Casi" value={this.props.regionalData.totale_casi}/>
@@ -30,7 +33,7 @@ class Regional extends React.Component<RegionalProps> {
         <h1>Dati odierni</h1>
           <div className="row">
               <Card lenght="4" icona={faViruses} title="Nuovi positivi" value={this.props.regionalData.nuovi_positivi}/>
-              <Card lenght="4" icona={faThermometer} title="Attualmente positivi" value={this.props.regionalData.totale_positivi} diff={this.props.regionalData.varTotalCases}/>
+              <Card lenght="4" icona={faThermometer} title="Attualmente positivi" value={this.props.regionalData.totale_positivi} diff={this.props.regionalData.variazione_totale_positivi}/>
           </div>
           <div className="row">
               <Card lenght="4" icona={faBedPulse} title="Terapia Intensiva" value={this.props.regionalData.terapia_intensiva}/>
