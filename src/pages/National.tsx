@@ -1,5 +1,5 @@
 import * as React from "react";
-import { faBedPulse, faHeart, faHospital, faHouseMedical, faShieldVirus, faSkullCrossbones, faThermometer, faVirusCovid, faViruses } from "@fortawesome/free-solid-svg-icons";
+import { faBedPulse, faCalendar, faHeart, faHospital, faHouseMedical, faShieldVirus, faSkullCrossbones, faThermometer, faVirusCovid, faViruses } from "@fortawesome/free-solid-svg-icons";
 import Card from "../Card";
 import { fetchData } from "../AsyncFunctions";
 
@@ -18,6 +18,7 @@ interface HomeState {
     casi: String;
     varTotalCases: String;
     vaccinati: String;
+    date: String;
 }
 
 const nationalUrl = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale-latest.json";
@@ -38,7 +39,8 @@ export default class National extends React.Component<HomeProps, HomeState>{
             guariti: null,
             casi:null,
             varTotalCases: null,
-            vaccinati: null
+            vaccinati: null,
+            date: null
         };
     }
 
@@ -53,7 +55,9 @@ export default class National extends React.Component<HomeProps, HomeState>{
           }
         });
 
-        console.log('data', vaccineData);
+        console.log('data', nationalData);
+
+        let dataDate = new Date(nationalData.data);
         
         this.setState({
             'totalCasesToday': nationalData.nuovi_positivi,
@@ -65,7 +69,8 @@ export default class National extends React.Component<HomeProps, HomeState>{
             'deceduti': nationalData.deceduti,
             'guariti': nationalData.dimessi_guariti,
             'casi': nationalData.totale_casi,
-            'vaccinati': totalImmune.toString()
+            'vaccinati': totalImmune.toString(),
+            'date': dataDate.getDay() + " " + dataDate.getMonth() + " " + dataDate.getFullYear()
         })
     }
 
@@ -80,6 +85,8 @@ export default class National extends React.Component<HomeProps, HomeState>{
           </div>
           <div className="row"> 
             <Card lenght="4" icona={faShieldVirus} title="Immuni*" subtitle="(Over 12 - Dose BOOSTER + Guariti)" value={this.state.vaccinati}/>
+            <div className= "col-xl-4 col-0"></div>
+            <Card lenght="4" icona={faCalendar} title="Data" value={this.state.date} dontanimate="true" ></Card>
           </div>
           <p>(*) Dato riferito a persone sopra i 12 anni con dose booster o guariti negli ultimi mesi</p>
         <h1>Dati odierni</h1>

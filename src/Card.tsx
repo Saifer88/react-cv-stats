@@ -10,11 +10,12 @@ interface CardProps{
     icona?: any;
     diff?: String;
     subtitle?: String;
+    dontanimate?: boolean;
 }
 
 export default function Card(props: CardProps) {
     return (
-<div className={"mb-4 col-"+props.lenght}>
+<div className={"mb-4 col-xl-"+props.lenght+" col-12"}>
       <div className="card text-white bg-dark mb-3 s">
         <div className="header mt-3 center">
           <h4>{props.title}
@@ -28,7 +29,8 @@ export default function Card(props: CardProps) {
           <div className="col-6 d-flex justify-content-center">
             <h2 className="value">
               <div className="value">
-              <CountUp  duration={1.5} separator="." end={props.value}></CountUp>
+              {!props.dontanimate && (<CountUp  duration={1.5} separator="." end={props.value}></CountUp>)}
+              {props.dontanimate && (<div>{props.value}</div>)}
               </div>
             </h2>
           </div>
